@@ -3,167 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The New Super Fast Travels | Premier Train & Tour Agency</title>
+    <title>New Super Fast Travels | Premium Corporate & Leisure Travel</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #003580; /* Corporate Blue */
-            --accent-color: #ff6b6b;  /* Urgent/Action Red for fast travel */
-            --text-dark: #2c3e50;
+            --bg-body: #f5f5f7; /* Apple's signature off-white background */
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-blue: #0066cc;
+            --card-bg: #ffffff;
+            --radius-large: 20px;
+            --radius-small: 12px;
         }
-        
-        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-        
-        /* Navbar Styling */
-        .navbar {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 15px 0;
-        }
-        .nav-link { color: var(--text-dark); font-weight: 500; margin-left: 15px; }
-        .nav-link:hover { color: var(--primary-color); }
-        .btn-contact { background: var(--primary-color); color: white; padding: 10px 25px; border-radius: 50px; }
-        .btn-contact:hover { background: #002255; color: white; }
 
-        /* Hero Section */
-        .hero {
-            /* Changed background to Indian Railway/Travel theme concept */
-            background: linear-gradient(rgba(0, 53, 128, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1474487548417-781cb714c2f0?q=80&w=1600&auto=format&fit=crop');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; /* Makes text look sharper */
+        }
+
+        /* --- Glassmorphism Navbar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .nav-link {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .nav-link:hover { opacity: 1; color: var(--accent-blue); }
+        .btn-apple {
+            background: var(--text-main);
+            color: white;
+            border-radius: 980px; /* Pill shape */
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .btn-apple:hover {
+            background: #333;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: 90vh;
+            background-image: url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2071&auto=format&fit=crop');
             background-size: cover;
-            background-position: center 30%;
-            height: 85vh;
+            background-position: center;
             display: flex;
             align-items: center;
-            color: white;
+            justify-content: center;
             text-align: center;
+            position: relative;
         }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
-
-        /* Destination Cards */
-        .destination-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .hero-title {
+            font-size: 4rem; /* Big Typography */
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
             margin-bottom: 30px;
         }
-        .destination-card:hover { transform: translateY(-10px); }
-        .destination-img {
-            height: 250px;
-            object-fit: cover;
-            width: 100%;
-            transition: 0.5s;
-        }
-        .destination-card:hover .destination-img { transform: scale(1.1); }
-        .card-body { padding: 20px; background: white; position: relative; }
-        .price-tag {
-            position: absolute; top: -20px; right: 20px;
-            background: var(--primary-color); color: white;
-            padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;
-        }
 
-        /* Features Section */
-        .feature-box {
-            padding: 40px;
-            text-align: center;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            background: white;
-            transition: 0.3s;
-        }
-        .feature-box:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: transparent; }
-        .icon-box {
-            width: 70px; height: 70px; line-height: 70px;
-            background: #eef9fe; color: var(--primary-color);
-            border-radius: 50%; font-size: 28px; margin: 0 auto 20px;
-        }
-
-        /* Corporate Banner */
-        .corporate-banner {
-            background: var(--primary-color);
+        /* --- B2B Corporate Section (Dark Mode Style) --- */
+        .b2b-section {
+            background: #101010; /* Deep black/grey */
             color: white;
-            padding: 60px 0;
+            padding: 100px 0;
+            border-radius: 30px;
+            margin: 20px;
+        }
+        .b2b-badge {
+            color: #d4af37; /* Gold for premium business feel */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        /* Footer */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 0 20px; }
-        footer h5 { color: white; margin-bottom: 20px; }
-        footer a { color: #bbb; text-decoration: none; display: block; margin-bottom: 10px; }
-        footer a:hover { color: white; }
-        
-        /* Floating Whatsapp */
+        /* --- Cards & Grids --- */
+        .apple-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 0;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smooth spring animation */
+            height: 100%;
+        }
+        .apple-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .card-img-wrap {
+            height: 300px;
+            overflow: hidden;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .apple-card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+        .card-content { padding: 30px; }
+        .card-title { font-weight: 700; letter-spacing: -0.5px; margin-bottom: 5px; }
+        .card-text { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* --- Animations --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: white;
+            padding: 60px 0;
+            border-top: 1px solid #e5e5e5;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        footer a { color: var(--text-main); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* --- Floating WA --- */
         .float-wa {
-            position: fixed; bottom: 25px; right: 25px;
+            position: fixed; bottom: 30px; right: 30px;
             background: #25d366; color: white;
             width: 60px; height: 60px; border-radius: 50%;
-            text-align: center; line-height: 60px; font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s; z-index: 999;
         }
+        .float-wa:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="#" style="color: var(--primary-color); font-size: 1.5rem;">
-                <i class="fas fa-train me-2"></i> Super Fast Travels
-            </a>
+            <a class="navbar-brand" href="#">New Super Fast Travels</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#destinations">Indian Tours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#corporate">Corporate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#destinations">Domestic</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item">
-                        <a href="tel:+919210023410" class="btn btn-contact ms-3">
-                            <i class="fas fa-phone-alt me-2"></i> Call Us
-                        </a>
-                    </li>
                 </ul>
+                <a href="tel:+919210023410" class="btn btn-apple">Call +91 92100 23410</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1>Connecting Every Corner of India</h1>
-                    <p>Experts in Confirmed Train Tickets, Domestic Flights, and Family Holiday Packages.</p>
-                    <a href="https://wa.me/919210023410" class="btn btn-lg btn-primary me-2 px-5 py-3 rounded-pill">Book Train/Flight</a>
-                    <a href="#destinations" class="btn btn-lg btn-outline-light px-5 py-3 rounded-pill">View Packages</a>
-                </div>
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">Travel. <br>Reimagined.</h1>
+            <p class="hero-subtitle">The new standard in corporate travel management and premium domestic tours.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#destinations" class="btn btn-light rounded-pill px-4 py-2 fw-bold">Explore India</a>
+                <a href="#corporate" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">For Business</a>
             </div>
         </div>
     </header>
 
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-white">
         <div class="container">
             <div class="row text-center">
-                <div class="col-md-3 col-6 mb-4">
-                    <h2 class="fw-bold text-primary">500+</h2>
-                    <p class="text-muted">Indian Cities Covered</p>
+                <div class="col-md-4 fade-in-up">
+                    <h2 class="display-5 fw-bold text-dark">500+</h2>
+                    <p class="text-muted small text-uppercase fw-bold ls-1">Cities Connected</p>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h2 class="fw-bold text-primary">24/7</h2>
-                    <p class="text-muted">Booking Support</p>
+                <div class="col-md-4 fade-in-up" style="transition-delay: 0.1s;">
+                    <h2 class="display-5 fw-bold text-dark">50k+</h2>
+                    <p class="text-muted small text-uppercase fw-bold ls-1">Tickets Issued</p>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h2 class="fw-bold text-primary">50k+</h2>
-                    <p class="text-muted">Train Tickets Booked</p>
+                <div class="col-md-4 fade-in-up" style="transition-delay: 0.2s;">
+                    <h2 class="display-5 fw-bold text-dark">24/7</h2>
+                    <p class="text-muted small text-uppercase fw-bold ls-1">Concierge Support</p>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h2 class="fw-bold text-primary">100%</h2>
-                    <p class="text-muted">Happy Travelers</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="corporate" class="container">
+        <div class="b2b-section text-center fade-in-up">
+            <div class="container">
+                <span class="b2b-badge">B2B Solutions</span>
+                <h2 class="display-4 fw-bold mb-4">Built for Business.</h2>
+                <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 700px;">
+                    We streamline travel for companies of all sizes. From GST invoicing to last-minute tatkal confirmations, we handle the logistics so you can focus on business.
+                </p>
+                
+                <div class="row justify-content-center g-4 px-4">
+                    <div class="col-md-4">
+                        <div class="p-4" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                            <i class="fas fa-file-invoice fa-2x mb-3 text-white"></i>
+                            <h5 class="fw-bold">GST Compliant</h5>
+                            <p class="small text-white-50 mb-0">Seamless invoicing for all tax credits.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                            <i class="fas fa-user-tie fa-2x mb-3 text-white"></i>
+                            <h5 class="fw-bold">Account Manager</h5>
+                            <p class="small text-white-50 mb-0">Dedicated support for your company.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                            <i class="fas fa-users fa-2x mb-3 text-white"></i>
+                            <h5 class="fw-bold">MICE Travel</h5>
+                            <p class="small text-white-50 mb-0">Large group bookings & conferences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <a href="mailto:superfast_travel@yahoo.com" class="btn btn-light rounded-pill px-5 py-3 fw-bold">Partner With Us</a>
                 </div>
             </div>
         </div>
@@ -171,99 +282,72 @@
 
     <section id="destinations" class="py-5">
         <div class="container">
-            <div class="text-center mb-5">
-                <h6 class="text-primary fw-bold text-uppercase ls-2">Discover India</h6>
-                <h2 class="fw-bold">Popular Domestic Packages</h2>
-                <p class="text-muted">Best rates for Train and Flight inclusive tours</p>
+            <div class="d-flex justify-content-between align-items-end mb-5 px-2">
+                <div>
+                    <h2 class="fw-bold display-6">Curated Journeys.</h2>
+                    <p class="text-secondary mb-0">Experience the finest domestic destinations.</p>
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Vaishno Devi Mountains">
+            <div class="row g-4">
+                <div class="col-lg-6 fade-in-up">
+                    <div class="apple-card">
+                        <div class="card-img-wrap" style="height: 400px;">
+                            <img src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=2070&auto=format&fit=crop" alt="Kashmir">
                         </div>
-                        <div class="card-body">
-                            <span class="price-tag">Pilgrimage</span>
-                            <h4 class="fw-bold">Vaishno Devi & Katra</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> Jammu & Kashmir</p>
-                            <p>Complete yatra packages including train tickets, hotel, and transfers.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Vaishno Devi packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
+                        <div class="card-content">
+                            <span class="badge bg-light text-dark mb-2">Most Popular</span>
+                            <h3 class="card-title">Kashmir Valley</h3>
+                            <p class="card-text">Complete packages including flights, houseboats, and car transfers.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Goa Beach">
+                <div class="col-lg-6 fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="apple-card">
+                        <div class="card-img-wrap" style="height: 400px;">
+                            <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=2070&auto=format&fit=crop" alt="Rajasthan">
                         </div>
-                        <div class="card-body">
-                            <span class="price-tag">Best Seller</span>
-                            <h4 class="fw-bold">Goa Getaway</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> North & South Goa</p>
-                            <p>Train/Flight packages for friends and families. Hotels near Baga & Calangute.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Goa packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
+                        <div class="card-content">
+                            <span class="badge bg-light text-dark mb-2">Heritage</span>
+                            <h3 class="card-title">Royal Rajasthan</h3>
+                            <p class="card-text">Experience the luxury of Jaipur, Udaipur, and Jaisalmer via train or flight.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Varanasi Ghats">
+                <div class="col-md-4 fade-in-up">
+                    <div class="apple-card">
+                        <div class="card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1000&auto=format&fit=crop" alt="Goa">
                         </div>
-                        <div class="card-body">
-                            <span class="price-tag">Spiritual</span>
-                            <h4 class="fw-bold">Kashi & Varanasi</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> Uttar Pradesh</p>
-                            <p>Experience the Ganga Aarti and temple tours. Group bookings available.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Varanasi packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
-                        </div>
-                    </div>
-                </div>
-                
-                 <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Manali Mountains">
-                        </div>
-                        <div class="card-body">
-                            <span class="price-tag">Honeymoon</span>
-                            <h4 class="fw-bold">Shimla & Manali</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> Himachal Pradesh</p>
-                            <p>Volvo bus and private car packages to the mountains.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Manali packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
+                        <div class="card-content">
+                            <h4 class="card-title">Goa</h4>
+                            <p class="card-text">Group flight bookings & villa stays.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Jaipur Palace">
+                <div class="col-md-4 fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="apple-card">
+                        <div class="card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=1000&auto=format&fit=crop" alt="Varanasi">
                         </div>
-                        <div class="card-body">
-                            <span class="price-tag">Heritage</span>
-                            <h4 class="fw-bold">Royal Rajasthan</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> Jaipur, Udaipur, Jaisalmer</p>
-                            <p>Explore forts and palaces. Perfect for winter holidays.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Rajasthan packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
+                        <div class="card-content">
+                            <h4 class="card-title">Varanasi</h4>
+                            <p class="card-text">Spiritual train tours & hotel arrangements.</p>
                         </div>
                     </div>
                 </div>
 
-                 <div class="col-md-4">
-                    <div class="destination-card">
-                        <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img" alt="Kerala Backwaters">
+                <div class="col-md-4 fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="apple-card">
+                        <div class="card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1593693396885-5a589918c120?q=80&w=1000&auto=format&fit=crop" alt="Kerala">
                         </div>
-                        <div class="card-body">
-                            <span class="price-tag">Nature</span>
-                            <h4 class="fw-bold">Kerala Backwaters</h4>
-                            <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> Munnar, Alleppey</p>
-                            <p>Houseboat stays and tea gardens in God's Own Country.</p>
-                            <a href="https://wa.me/919210023410?text=I'm interested in Kerala packages" class="btn btn-outline-primary w-100 rounded-pill">Get Quote</a>
+                        <div class="card-content">
+                            <h4 class="card-title">Kerala</h4>
+                            <p class="card-text">Munnar & Alleppey honeymoon specials.</p>
                         </div>
                     </div>
                 </div>
@@ -272,75 +356,76 @@
     </section>
 
     <section id="services" class="py-5 bg-white">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Our Services</h2>
-                <p class="text-muted">Comprehensive travel solutions for your needs</p>
+        <div class="container py-5">
+            <h2 class="display-6 fw-bold text-center mb-5 fade-in-up">Comprehensive Services.</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-3 text-center fade-in-up">
+                    <div class="p-3">
+                        <i class="fas fa-train fa-3x mb-3 text-dark"></i>
+                        <h5 class="fw-bold">Train Tickets</h5>
+                        <p class="text-secondary small">Confirmed Tatkal & General bookings.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="p-3">
+                        <i class="fas fa-plane fa-3x mb-3 text-dark"></i>
+                        <h5 class="fw-bold">Domestic Flights</h5>
+                        <p class="text-secondary small">Corporate rates on major airlines.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="p-3">
+                        <i class="fas fa-hotel fa-3x mb-3 text-dark"></i>
+                        <h5 class="fw-bold">Premium Hotels</h5>
+                        <p class="text-secondary small">Curated stays from 3-star to 5-star.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="p-3">
+                        <i class="fas fa-passport fa-3x mb-3 text-dark"></i>
+                        <h5 class="fw-bold">Visa Assist</h5>
+                        <p class="text-secondary small">Documentation support for travel.</p>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="feature-box">
-                        <div class="icon-box"><i class="fas fa-train"></i></div>
-                        <h5>Train Bookings</h5>
-                        <p class="text-muted">Fast and confirmed train ticket bookings (Tatkal & General) across India.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-box">
-                        <div class="icon-box"><i class="fas fa-plane"></i></div>
-                        <h5>Domestic Flights</h5>
-                        <p class="text-muted">Unbeatable rates on Indigo, Air India, and Vistara flights.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-box">
-                        <div class="icon-box"><i class="fas fa-users"></i></div>
-                        <h5>Group & Corporate</h5>
-                        <p class="text-muted">Special arrangements for corporate groups, weddings, and family tours.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="corporate-banner text-center">
-        <div class="container">
-            <h2 class="fw-bold">Need a Custom Itinerary?</h2>
-            <p class="lead opacity-75 mb-4">We specialize in customizing trips within your budget.</p>
-            <a href="https://wa.me/919210023410" class="btn btn-light btn-lg rounded-pill px-5" style="color: var(--primary-color); font-weight: bold;">Chat with Agent</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold text-white">The New Super Fast Travels</h5>
-                    <p>Your trusted travel partner specializing in Indian Railways bookings, domestic flights, and curated holiday packages across India.</p>
+                <div class="col-md-5 mb-4">
+                    <h5 class="fw-bold text-dark">New Super Fast Travels</h5>
+                    <p class="mt-2">Redefining the travel experience with speed, reliability, and premium service standards.</p>
                 </div>
                 <div class="col-md-2 mb-4">
-                    <h5>Quick Links</h5>
-                    <a href="#">Home</a>
-                    <a href="#destinations">Domestic Tours</a>
-                    <a href="#services">Services</a>
+                    <p class="fw-bold text-dark">Explore</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#destinations">Domestic</a></li>
+                        <li><a href="#corporate">Corporate</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <p class="fw-bold text-dark">Contact</p>
+                    <ul class="list-unstyled">
+                        <li><a href="tel:+919210023410">+91 92100 23410</a></li>
+                        <li><a href="mailto:superfast_travel@yahoo.com">Email Us</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <h5>Our Specialties</h5>
-                    <a href="#">Train Tickets</a>
-                    <a href="#">Flight Bookings</a>
-                    <a href="#">Hotel Reservations</a>
-                    <a href="#">Group Tours</a>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Contact Us</h5>
-                    <p><i class="fas fa-phone me-2"></i> +91 92100 23410</p>
-                    <p><i class="fas fa-envelope me-2"></i> superfast_travel@yahoo.com</p>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> India</p>
+                    <p class="fw-bold text-dark">Legal</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
                 </div>
             </div>
-            <hr class="border-secondary">
-            <div class="text-center pt-3">
-                <p class="mb-0">&copy; <span id="year"></span> The New Super Fast Travels. All Rights Reserved.</p>
+            <div class="pt-4 mt-4 border-top">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <p class="mb-0">Copyright © <span id="year"></span> New Super Fast Travels. All rights reserved.</p>
+                    <p class="mb-0 small">Ghaziabad, Uttar Pradesh, India</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -350,9 +435,24 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Automatically set the current year
+        // Auto-update year
         document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Scroll Animation Logic (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Select all elements to animate
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
